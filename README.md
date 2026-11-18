@@ -1,5 +1,7 @@
 # Student Task Manager
 
+Project status: Planning
+
 A small console-based Python application for managing student tasks. It was
 developed as a DevOps assignment with feature branches, merge conflict
 resolution, automated tests, and GitHub Actions continuous integration.

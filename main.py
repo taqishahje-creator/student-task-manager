@@ -31,6 +31,32 @@ def add_task():
     tasks.append(task)
     print("Task added successfully!")
 
+def delete_task():
+    display_tasks()
+
+    if not tasks:
+        return
+
+    try:
+        task_id = int(input("Enter Task ID to delete: "))
+
+        for task in tasks:
+            if task["id"] == task_id:
+                confirm = input("Confirm deletion (yes/no): ").strip().lower()
+
+                if confirm != "yes":
+                    print("Deletion cancelled.")
+                    return
+
+                tasks.remove(task)
+                print("Task deleted successfully!")
+                return
+
+        print("Error: Task ID not found!")
+
+    except ValueError:
+        print("Error: Please enter a valid numeric Task ID!")
+
 
 
 
@@ -78,7 +104,8 @@ def main():
         print("1. Add Task")
         print("2. Display Tasks")
         print("3. Complete Task")
-        print("4. Exit")
+        print("4. Delete Task")
+      Aprint("5. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -86,9 +113,11 @@ def main():
             add_task()
         elif choice == "2":
             display_tasks()
-        elif choice == "3":
+                elif choice == "3":
             complete_task()
         elif choice == "4":
+            delete_task()
+        elif choice == "5":
             print("Exiting Student Task Manager...")
             break
         else:

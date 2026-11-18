@@ -6,13 +6,22 @@ tasks = []
 
 
 
+
 def add_task():
     title = input("Enter task title: ").strip()
 
+    # Reject empty task titles
     if not title:
         print("Error: Task title cannot be empty!")
         return
 
+    # Prevent duplicate tasks
+    for task in tasks:
+        if task["title"].lower() == title.lower():
+            print("Error: This task already exists!")
+            return
+
+    # Create a new task
     task = {
         "id": len(tasks) + 1,
         "title": title,
@@ -21,6 +30,7 @@ def add_task():
 
     tasks.append(task)
     print("Task added successfully!")
+
 
 
 

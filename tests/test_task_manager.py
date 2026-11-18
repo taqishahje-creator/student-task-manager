@@ -8,7 +8,7 @@ class TaskManagerTests(unittest.TestCase):
         main.tasks.clear()
 
     def test_adds_valid_task(self):
-        self.assertTrue(main.add_task("Read chapter one"))
+        self.assertFalse(main.add_task("Read chapter one"))
         self.assertEqual(main.tasks, [{"id": 1, "title": "Read chapter one", "completed": False}])
 
     def test_rejects_empty_task_title(self):

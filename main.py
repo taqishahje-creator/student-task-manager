@@ -5,13 +5,29 @@
 tasks = []
 
 
+
+
 def add_task():
-    title = input("Enter task title: ")
+    title = input("Enter task title: ").strip()
+
+    # Reject empty task titles
+    if not title:
+        print("Error: Task title cannot be empty!")
+        return
+
+    # Prevent duplicate tasks
+    for task in tasks:
+        if task["title"].lower() == title.lower():
+            print("Error: This task already exists!")
+            return
+
+    # Create a new task
     task = {
         "id": len(tasks) + 1,
         "title": title,
         "completed": False
     }
+
     tasks.append(task)
     print("Task added successfully!")
 
@@ -42,6 +58,8 @@ def delete_task():
         print("Error: Please enter a valid numeric Task ID!")
 
 
+
+
 def display_tasks():
     if not tasks:
         print("No tasks available.")
@@ -53,13 +71,41 @@ def display_tasks():
         print(f'{task["id"]}. {task["title"]} - {status}')
 
 
+def complete_task():
+    display_tasks()
+
+    if not tasks:
+        return
+
+    try:
+        task_id = int(input("Enter Task ID to complete: "))
+
+        for task in tasks:
+            if task["id"] == task_id:
+
+                if task["completed"]:
+                    print("This task is already completed!")
+                    return
+
+                task["completed"] = True
+                print("Task marked as completed!")
+                return
+
+        print("Error: Task ID not found!")
+
+    except ValueError:
+        print("Error: Please enter a valid numeric Task ID!")
+
+
+
 def main():
     while True:
         print("\n===== Student Task Manager =====")
         print("1. Add Task")
         print("2. Display Tasks")
-        print("3. Delete Task")
-        print("4. Exit")
+        print("3. Complete Task")
+        print("4. Delete Task")
+      Aprint("5. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -67,9 +113,11 @@ def main():
             add_task()
         elif choice == "2":
             display_tasks()
-        elif choice == "3":
-            delete_task()
+                elif choice == "3":
+            complete_task()
         elif choice == "4":
+            delete_task()
+        elif choice == "5":
             print("Exiting Student Task Manager...")
             break
         else:

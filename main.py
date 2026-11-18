@@ -5,15 +5,23 @@
 tasks = []
 
 
+
 def add_task():
-    title = input("Enter task title: ")
+    title = input("Enter task title: ").strip()
+
+    if not title:
+        print("Error: Task title cannot be empty!")
+        return
+
     task = {
         "id": len(tasks) + 1,
         "title": title,
         "completed": False
     }
+
     tasks.append(task)
     print("Task added successfully!")
+
 
 
 def display_tasks():

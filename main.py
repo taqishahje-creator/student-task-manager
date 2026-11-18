@@ -26,6 +26,12 @@ def delete_task():
 
         for task in tasks:
             if task["id"] == task_id:
+                confirm = input("Confirm deletion (yes/no): ").strip().lower()
+
+                if confirm != "yes":
+                    print("Deletion cancelled.")
+                    return
+
                 tasks.remove(task)
                 print("Task deleted successfully!")
                 return

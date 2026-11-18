@@ -38,6 +38,11 @@ def complete_task():
 
         for task in tasks:
             if task["id"] == task_id:
+
+                if task["completed"]:
+                    print("This task is already completed!")
+                    return
+
                 task["completed"] = True
                 print("Task marked as completed!")
                 return
@@ -46,7 +51,6 @@ def complete_task():
 
     except ValueError:
         print("Error: Please enter a valid numeric Task ID!")
-
 
 
 
